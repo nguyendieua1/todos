@@ -1,16 +1,32 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png" />
-  <HelloWorld />
+  <ul>
+    <li v-for="item of items" :key="item.id">
+      {{ item.text }}
+    </li>
+  </ul>
 </template>
 
 <script>
-// This starter template is using Vue 3 <script setup> SFCs
-// Check out https://vuejs.org/api/sfc-script-setup.html#script-setup
-import HelloWorld from './components/HelloWorld.vue'
+
 export default {
+  name: "App",
+  data() {
+    return {
+      items: []
+    }
+  },
   components: {
-    HelloWorld,
-  }
+
+  },
+   async created() {
+    try {
+      const res = await axios.get(`http://127.0.0.1:8000/api/todos`);
+      this.items = res.data;
+      console.log(this.items)
+    } catch (error) {
+      console.log(error);
+    }
+  },
 }
 </script>
 
