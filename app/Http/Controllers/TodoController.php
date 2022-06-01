@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class TodoController extends Controller
 {
-    public function index(Request $request){
-        return Todo::all();
+    public function index(){
+        return Todo::where('id',2);
     }
 }
