@@ -1,8 +1,9 @@
 <template>
-<li v-for="item in items">
-    {{ item.category }}
-    {{ item.question }}
+<li >
+  {{ items.id }}
+  {{ items.text }}
 </li>
+
 </template>
 
 <script>
@@ -19,8 +20,8 @@ export default {
   },
    async created() {
     try {
-      const res = await axios.get(`https://opentdb.com/api.php?amount=10&category=27&difficulty=hard&type=multiple`);
-      this.items = res.data.results;
+      const res = await axios.get(`http://127.0.0.1:8000/api/todos`);
+      this.items = res.data;
       console.log(this.items)
     } catch (error) {
       console.log(error);
